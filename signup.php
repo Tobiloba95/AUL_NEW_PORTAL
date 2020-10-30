@@ -1,3 +1,45 @@
+<?php
+//check if the button is clickeed 
+if(isset($_POST['signup'])){
+//echo "btn clicked";
+
+
+$servername = "localhost";
+$username = "";
+$password = "";
+$dbname = "aul_new_portal";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+} 
+
+$adminname=$_POST['adminname'];
+$email=$_POST['email'];
+$phone_number=$_POST['phone_number'];
+$password=$_POST['password'];
+$confirm_password=$_POST['confirm_password'];
+
+
+if($password != $confirm_password){
+  $msg = "passwords doesn't match";
+}
+
+  $sql = "INSERT INTO adminlogin (adminname, email, phone_number, password, confirm_password ) 
+  VALUES ('$adminname', '$email', '$phone_number', '$password', '$confirm_password' )";
+  if ($conn->query($sql) === TRUE) {
+    echo "Connected successfully";
+  }
+   
+  else {
+  echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+
+}
+?>	             
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -15,31 +57,37 @@
     <title>AUL_new_portal</title>
   </head>
   <body>
-    <form action="validate.php" method="post">
+    <form action="signup.php" method="post">
       <div class="login-box">
         <h1>Sign-up</h1>
 
         <div class="textbox">
           <i class="fa fa-user" aria-hidden="true"></i>
-          <input type="text" placeholder="Name" name="adminname" value="">
+          <input type="text" placeholder="Name" name="adminname" value="" id="adminname">
         </div>
 
         <div class="textbox">
           <i class="fa fa-mail-bulk" aria-hidden="true"></i>
-          <input type="email" placeholder="Email" name="email" value="">
+          <input type="email" placeholder="Email" name="email" value="" id="email">
         </div>
 
         <div class="textbox">
           <i class="fa fa-phone-alt" aria-hidden="true"></i>
-          <input type="phone_number" placeholder="Number" name="phone_number" value="">
+          <input type="phone_number" placeholder="Number" name="phone_number" value="" id="phone_number">
         </div>
 
         <div class="textbox">
           <i class="fa fa-lock" aria-hidden="true"></i>
-          <input type="password" placeholder="Password" name="password" value="">
+          <input type="password" placeholder="Password" name="password" value="" id="password">
         </div>
 
-        <input class="button" type="submit" name="sign-up" value="Sign Up">
+        <div class="textbox">
+          <i class="fa fa-lock" aria-hidden="true"></i>
+          <input type="password" placeholder="Confirm Password" name="confirm_password" value="" id="confirm_password">
+        </div>
+
+
+        <input class="button" type="submit" name="signup" value="Sign Up">
 
        
 

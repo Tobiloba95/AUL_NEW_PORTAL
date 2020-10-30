@@ -15,7 +15,7 @@
     <title>AUL_new_portal</title>
   </head>
   <body>
-    <form action="validate.php" method="post">
+    <form action="signup.php" method="post">
       <div class="login-box">
         <h1>Login</h1>
 
