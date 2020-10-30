@@ -11,7 +11,40 @@
     <title>AUL_new_portal</title>
   </head>
   <body>
-    <h1><
+    <div class="body">
+    <table id="up">
+      <tbody>
+        <tr>
+          <td>
+            <h1><a href="home.php" title="AUL, news portal">AUL</a></h1>
+            Welcome,
+            <b>Guest</b>
+            :
+            <a href="signup.php">Join AUL_News_portal</a>
+            /
+            <b><a href="adminlogin.php">LOGIN!</a></b>
+            /
+            <a href="trending.php">Trending</a>
+            /
+            <a href="recent.php">Recent</a>
+            /
+            <a href="topic.php">New</a>
+            <br>
+            <b>Date</b>
+            : Friday, 30 October 2020 at 05:32 PM
+            /
+            <b><a href="adminlogout.php">LOGOUT!</a></b>
+            <p></p>
+            <form action="search.php">
+              <input type="text" name="question" size="32">
+              <input type="submit" name="search" value="search">
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    
+    </table> 
+    </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
 

@@ -1,3 +1,34 @@
+<?php
+session_start();
+
+if (isset($_SESSION["adminname"]) && isset($_SESSION["loggedIn"])){
+	header("Location: home.php");
+	exit();
+}
+
+if (isset($_POST['adminlogin'])){
+	$connection= new mysqli("localhost", "root","", "aul_news_portal");
+
+	$adminname = $connection->real_escape_string($_POST["adminname"]);
+	$password = sha1($connection->real_escape_string($_POST["password"]));
+	$data= $connection->query("SELECT adminname FROM adminlogin WHERE adminname='$adminname' AND password='$password'");
+	
+	if ($data->num_rows > 0){
+		$_SESSION["adminname"] = $adminname;
+		$_SESSION["loggedIn"] = 1;
+
+		
+		header('Location: home.php');
+		exit();
+  }
+  else{
+		echo "incorrect";
+	}
+
+
+
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -15,7 +46,7 @@
     <title>AUL_new_portal</title>
   </head>
   <body>
-    <form action="signup.php" method="post">
+    <form action="home.php" method="post">
       <div class="login-box">
         <h1>Login</h1>
 

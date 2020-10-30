@@ -1,3 +1,26 @@
+<?php
+$connection= new mysqli("localhost", "root","", "aul_news_portal");
+$email = $connection->real_escape_string($_POST["email"]);
+
+$data = $connection->query("SELECT id FROM adminlogin WHERE email='$email'");
+
+if ($data->num_rows > 0){
+$str= "0123456789qwertyyuiokkgffasdasdsvcvd";
+$str = str_shuffle($str);
+$str = substr($str, 0, 9);
+$url = ;
+
+mail($email, "Reset Password", "To Reset the Password, Please Visit: $url", "From: support@domain.com\r\n");
+
+$connection->query("UPDATE user SET token='$str' WHERE email='$email'");
+
+}else{
+
+}
+}
+
+
+?>
 <!doctype html>
 <html lang="en">
   <head>
