@@ -1,47 +1,41 @@
 <?php
-//check if the button is clickeed 
-if(isset($_POST['signup'])){
-//echo "btn clicked";
+  //check if the button is clickeed 
+  if(isset($_POST['signup'])){
+  //echo "btn clicked";
 
 
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $dbname = "aul_news_portal";
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "aul_news_portal";
 
-  // Create connection
-  $conn = new mysqli($servername, $username, $password, $dbname);
-  // Check connection
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  } 
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    } 
 
-  $adminname=$_POST['adminname'];
-  $email=$_POST['email'];
-  $phone_number=$_POST['phone_number'];
-  $password=$_POST['password'];
-  $confirm_password=$_POST['confirm_password'];
+    $adminname=$_POST['adminname'];
+    $email=$_POST['email'];
+    $phone_number=$_POST['phone_number'];
+    $password=$_POST['password'];
+    $confirm_password=$_POST['confirm_password'];
 
 
-  function assertSamePassword($password, $confirm_password) {
-    if (! $password === $confirm_password) {
-        return false;
+
+    
+    $sql = "INSERT INTO adminlogin (adminname, email, phone_number, password, confirm_password ) 
+    VALUES ('$adminname', '$email', '$phone_number', '$password', '$confirm_password' )";
+    if ($conn->query($sql) === TRUE) {
+      echo "Connected Successfully";
+      header("location: adminlogin.php");
     }
-
-    return true;
-}
-
-  $sql = "INSERT INTO adminlogin (adminname, email, phone_number, password, confirm_password ) 
-  VALUES ('$adminname', '$email', '$phone_number', '$password', '$confirm_password' )";
-  if ($conn->query($sql) === TRUE) {
-    echo "Connected Successfully";
+    else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+      header("location: forget.php");
+    }
   }
-   
-  else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
-  }
-
-}
 ?>	             
 
 <!doctype html>
@@ -61,7 +55,7 @@ if(isset($_POST['signup'])){
     <title>AUL_new_portal</title>
   </head>
   <body>
-    <form action="home.php" method="post">
+    <form action="signup.php" method="post">
       <div class="login-box">
         <h1>Sign-up</h1>
 
@@ -89,9 +83,21 @@ if(isset($_POST['signup'])){
           <i class="fa fa-lock" aria-hidden="true"></i>
           <input type="password" placeholder="Confirm Password" name="confirm_password" value="" id="confirm_password" required>
         </div>
+        <script type="text/javascript">
+          function Validate() {
+            var password = document.getElementById("txtpassword").value;
+            var confirm_Password = document.getElementById("txtconfirm_Password").value;
+            if (password != confirm_Password) {
+              alert("Passwords do not match.");
+              return false;
+            }
+            return true;
+          }
+        </script>
 
 
         <input class="button" type="submit" name="signup" value="Sign Up">
+        <center><b>Already registered ?</b> <br></b><a href="adminlogin.php">Login here</a></center>
 
        
 

@@ -8,7 +8,7 @@ if ($data->num_rows > 0){
 $str= "0123456789qwertyyuiokkgffasdasdsvcvd";
 $str = str_shuffle($str);
 $str = substr($str, 0, 9);
-$url = ;
+$url;
 
 mail($email, "Reset Password", "To Reset the Password, Please Visit: $url", "From: support@domain.com\r\n");
 
@@ -17,7 +17,7 @@ $connection->query("UPDATE user SET token='$str' WHERE email='$email'");
 }else{
 
 }
-}
+
 
 
 ?>

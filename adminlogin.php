@@ -6,12 +6,12 @@ if (isset($_SESSION["adminname"]) && isset($_SESSION["loggedIn"])){
 	exit();
 }
 
-if (isset($_POST['adminlogin'])){
+if (isset($_POST['login'])){
 	$connection= new mysqli("localhost", "root","", "aul_news_portal");
 
 	$adminname = $connection->real_escape_string($_POST["adminname"]);
 	$password = sha1($connection->real_escape_string($_POST["password"]));
-	$data= $connection->query("SELECT adminname FROM adminlogin WHERE adminname='$adminname' AND password='$password'");
+	$data= $connection->query("SELECT * FROM adminlogin WHERE adminname='$adminname' ");
 	
 	if ($data->num_rows > 0){
 		$_SESSION["adminname"] = $adminname;
@@ -46,7 +46,7 @@ if (isset($_POST['adminlogin'])){
     <title>AUL_new_portal</title>
   </head>
   <body>
-    <form action="home.php" method="post">
+    <form action="adminlogin.php" method="post">
       <div class="login-box">
         <h1>Login</h1>
 
