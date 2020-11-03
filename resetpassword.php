@@ -1,7 +1,7 @@
 <?php
 	
 if (isset($_GET["email"]) && isset($_GET["token"])) {
-$connection= new mysqli("localhost", "root","Tobi1234Loba*", "aul_news_portal");
+$connection= new mysqli("localhost", "root","", "aul_news_portal");
     $email = $connection->real_escape_string($_GET["email"]);
     $token = $connection->real_escape_string($_GET["token"]);
     $data = $connection->query("SELECT id FROM user WHERE email='$email' AND token='$token'");
