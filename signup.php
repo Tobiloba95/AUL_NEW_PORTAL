@@ -6,7 +6,7 @@
 
     $servername = "localhost";
     $username = "root";
-    $password = "";
+    $password = "Tobi1234loba*";
     $dbname = "aul_news_portal";
 
     // Create connection
@@ -20,20 +20,19 @@
     $email=$_POST['email'];
     $phone_number=$_POST['phone_number'];
     $password=$_POST['password'];
-    $confirm_password=$_POST['confirm_password'];
+    
 
 
 
     
-    $sql = "INSERT INTO adminlogin (adminname, email, phone_number, password, confirm_password ) 
-    VALUES ('$adminname', '$email', '$phone_number', '$password', '$confirm_password' )";
+    $sql = "INSERT INTO signup(adminname, email, phone_number, password) 
+    VALUES ('$adminname', '$email', '$phone_number', '$password')";
     if ($conn->query($sql) === TRUE) {
       echo "Connected Successfully";
       header("location: adminlogin.php");
     }
     else {
       echo "Error: " . $sql . "<br>" . $conn->error;
-      header("location: forget.php");
     }
   }
 ?>	             
@@ -78,22 +77,6 @@
           <i class="fa fa-lock" aria-hidden="true"></i>
           <input type="password" placeholder="Password" name="password" value="" id="password" requried>
         </div>
-
-        <div class="textbox">
-          <i class="fa fa-lock" aria-hidden="true"></i>
-          <input type="password" placeholder="Confirm Password" name="confirm_password" value="" id="confirm_password" required>
-        </div>
-        <script type="text/javascript">
-          function Validate() {
-            var password = document.getElementById("txtpassword").value;
-            var confirm_Password = document.getElementById("txtconfirm_Password").value;
-            if (password != confirm_Password) {
-              alert("Passwords do not match.");
-              return false;
-            }
-            return true;
-          }
-        </script>
 
 
         <input class="button" type="submit" name="signup" value="Sign Up">

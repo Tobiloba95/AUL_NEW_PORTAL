@@ -11,7 +11,7 @@ if (isset($_POST['login'])){
 
 	$adminname = $connection->real_escape_string($_POST["adminname"]);
 	$password = sha1($connection->real_escape_string($_POST["password"]));
-	$data= $connection->query("SELECT * FROM adminlogin WHERE adminname='$adminname' ");
+	$data= $connection->query("SELECT * FROM signup WHERE adminname='$adminname' ");
 	
 	if ($data->num_rows > 0){
 		$_SESSION["adminname"] = $adminname;
@@ -73,6 +73,9 @@ if (isset($_POST['login'])){
           <a class="txt1" href="forget.php">
             Forgot Password?
           </a>
+          <p>Not registered yet? <a href='signup.php'>Register Here</a></p>
+
+          
         </div>
         
 
